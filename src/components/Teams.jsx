@@ -5,6 +5,7 @@ import Table from './reusables/Table';
 import TableHead from './reusables/TableHead';
 import TableBody from './reusables/TableBody';
 import TableRow from './reusables/TableRow';
+import UpdateTeam from './update/UpdateTeam';
 
 const Teams = () => {
   const [teams, setTeams] = useState([]);
@@ -42,7 +43,7 @@ const Teams = () => {
                 <TableRow
                   attributes={{
                     team: team.name,
-                    update: <>Update</>,
+                    update: <UpdateTeam />,
                     delete: <>Delete</>
                   }}
                 />

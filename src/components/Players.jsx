@@ -5,6 +5,7 @@ import Table from './reusables/Table';
 import TableHead from './reusables/TableHead';
 import TableBody from './reusables/TableBody';
 import TableRow from './reusables/TableRow';
+import UpdatePlayer from './update/UpdatePlayer';
 
 const Players = () => {
   const [players, setPlayers] = useState([]);
@@ -41,7 +42,7 @@ const Players = () => {
                     name: player.name,
                     goals: player.goals,
                     team: player.team,
-                    update: <>Update</>,
+                    update: <UpdatePlayer />,
                     delete: <>Delete</>
                   }}
                 />
