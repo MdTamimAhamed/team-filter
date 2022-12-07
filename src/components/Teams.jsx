@@ -6,6 +6,7 @@ import TableHead from './reusables/TableHead';
 import TableBody from './reusables/TableBody';
 import TableRow from './reusables/TableRow';
 import UpdateTeam from './update/UpdateTeam';
+import baseURL from '../utils/baseURL';
 
 const Teams = () => {
   const [teams, setTeams] = useState([]);
@@ -16,7 +17,7 @@ const Teams = () => {
 
   async function getTeams() {
     try {
-      const res = await axios.get('http://localhost:5000/teams');
+      const res = await axios.get(`${baseURL}/teams`);
       setTeams([...res?.data]);
     } catch (err) {
       console.log(err);

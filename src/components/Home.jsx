@@ -5,6 +5,7 @@ import Table from './reusables/Table';
 import TableBody from './reusables/TableBody';
 import TableHead from './reusables/TableHead';
 import TableRow from './reusables/TableRow';
+import baseURL from '../utils/baseURL';
 
 const Home = () => {
   const [players, setPlayers] = useState([]);
@@ -15,7 +16,7 @@ const Home = () => {
 
   async function getLeaderboard() {
     try {
-      const res = await axios.get('http://localhost:5000/leaderboard');
+      const res = await axios.get(`${baseURL}/leaderboard`);
       setPlayers([...res?.data]);
     } catch (err) {
       console.log(err);
