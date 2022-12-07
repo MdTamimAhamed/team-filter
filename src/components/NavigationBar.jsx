@@ -15,7 +15,7 @@ const NavigationBar = () => {
                         Teams
                     </li>
                 </Link>
-                <Link>
+                <Link to='/players'>
                     <li className='px-10 py-3 mx-5 cursor-pointer rounded-md  bg-primary hover:bg-primaryShade'>
                         Players
                     </li>
