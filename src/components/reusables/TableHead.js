@@ -6,7 +6,7 @@ const TableHead = ({ titles, children, bgColor }) => {
     <thead className={bgColor || 'bg-configBlue'}>
       <tr>
         {titles?.map(title => (
-          <th className='py-2 px-1' key={Math.random().toFixed(2)}>
+          <th className='py-2 px-1 text-white' key={Math.random().toFixed(2)}>
             {title}
           </th>
         ))}

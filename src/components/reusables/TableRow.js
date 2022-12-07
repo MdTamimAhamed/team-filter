@@ -19,7 +19,7 @@ const TableRow = ({ attributes, children, alignment }) => {
   }
 
   return (
-    <tr className='bg-slate-200 border-b border-gray-500 border-solid'>
+    <tr className='border-b border-gray-300 border-solid'>
       {columns?.map(column => (
         <td className={`p-2 ${alignment || 'text-center'}`} key={Math.random()}>
           {column}

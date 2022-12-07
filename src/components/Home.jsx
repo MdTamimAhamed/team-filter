@@ -1,38 +1,55 @@
-import React from 'react'
-import NavigationBar from './NavigationBar'
+import axios from 'axios';
+import React, { useState, useEffect } from 'react';
+import NavigationBar from './NavigationBar';
+import Table from './reusables/Table';
+import TableBody from './reusables/TableBody';
+import TableHead from './reusables/TableHead';
+import TableRow from './reusables/TableRow';
 
 const Home = () => {
-    const goldenBootWinner = [
-        {id:1, playerName: 'Mohamed Salah', goal:'23'}
-    ]
+  const [players, setPlayers] = useState([]);
+
+  useEffect(() => {
+    getLeaderboard();
+  }, []);
+
+  async function getLeaderboard() {
+    try {
+      const res = await axios.get('http://localhost:5000/leaderboard');
+      setPlayers([...res?.data]);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   return (
     <>
-        <NavigationBar/>
-        <div className='flex justify-center'>
-            <div className='w-[850px] mt-10 flex flex-col justify-center'>
-                <h1 className='text-center text-[30px] font-bold'>Winners of the Golden Boot</h1>
-                <table className='mt-10 border border-grayBorder'>
-                    <thead>
-                        <tr>
-                            <th className='w-1/2 py-4 text-xl font-bold'>Player Name</th>
-                            <th className='w-1/2 py-4 text-xl font-bold'>Goals</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {
-                            goldenBootWinner.map((item) =>(
-                                <tr key={item.id} className='border-t border-grayBorder'>
-                                    <td className='w-1/2 text-center py-4'>{item.playerName}</td>
-                                    <td className='w-1/2 text-center py-4'>{item.goal}</td>
-                                </tr>
-                            ))
-                        }
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </>
-  )
-}
+      <NavigationBar />
+      <div className='flex justify-center'>
+        <div className='w-[850px] mt-10 flex flex-col justify-center'>
+          <h1 className='text-center text-[30px]'>Golden Boot Leaderboard</h1>
 
-export default Home
+          <Table>
+            <TableHead
+              bgColor='bg-primary'
+              titles={['Name', 'Goals', 'Team']}
+            ></TableHead>
+            <TableBody>
+              {players.map(player => (
+                <TableRow
+                  attributes={{
+                    name: player.name,
+                    goals: player.goals,
+                    team: player.team
+                  }}
+                />
+              ))}
+            </TableBody>
+          </Table>
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default Home;
