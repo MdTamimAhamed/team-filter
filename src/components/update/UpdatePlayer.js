@@ -56,7 +56,21 @@ const UpdatePlayer = ({ id }) => {
   }
 
   async function handleUpdate(e) {
-    //
+    e.preventDefault();
+
+    try {
+      const payload = {
+        name: name,
+        goal_scored: goals,
+        team_id: teamId
+      };
+
+      await axios.patch(`${baseURL}/players/${id}`, payload);
+      setOpen(false);
+      window.location.href = 'http://localhost:3000/players';
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   return (

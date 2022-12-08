@@ -37,6 +37,8 @@ const UpdateTeam = ({ id }) => {
     try {
       const payload = { name };
       await axios.patch(`${baseURL}/teams/${id}`, payload);
+      setOpen(false);
+      window.location.href = 'http://localhost:3000/teams';
     } catch (err) {
       console.log(err);
     }
