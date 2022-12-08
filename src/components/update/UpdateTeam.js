@@ -53,7 +53,7 @@ const UpdateTeam = ({ id }) => {
       <Modal open={open} setOpen={setOpen}>
         <ModalContentWrapper width='lg:w-8/12 sm:w-10/12'>
           <ModalTitle>
-            <h1 className='text-xl text-left'>Update Player</h1>
+            <h1 className='text-xl text-left'>Update Team</h1>
           </ModalTitle>
           <ModalBody>
             <form
