@@ -6,9 +6,12 @@ import ModalBody from '../reusables/ModalBody';
 import ModalContentWrapper from '../reusables/ModalContentWrapper';
 import ModalFooter from '../reusables/ModalFooter';
 import ModalTitle from '../reusables/ModalTitle';
+import Button from '../reusables/Button';
+import InputHandler from '../InputHandler';
 
 const UpdateTeam = () => {
   const [open, setOpen] = useState(false);
+  const [teamName, setTeamName] = useState('');
 
   return (
     <>
@@ -23,7 +26,26 @@ const UpdateTeam = () => {
           </ModalTitle>
 
           <ModalBody>
-            <form>{/* Fields: name, Button: Submit */}</form>
+          <form className='flex flex-col justify-start'>
+              {/* Fields: name, goals; Select: state=teamId; Button: Submit */}
+              <div>
+                <label>Team Name</label>
+                <InputHandler
+                  type= 'text'
+                  state={teamName}
+                  setState ={ setTeamName}
+                  placeholder
+                />
+              </div>
+              <div className='w-full flex justify-center'>
+                <Button 
+                  type='submit'
+                  color = 'text-white'
+                  bgColor='bg-primary'
+                  children='Submit'
+                />
+              </div>
+            </form>
           </ModalBody>
 
           <ModalFooter>
