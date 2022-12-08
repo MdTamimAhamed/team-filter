@@ -7,21 +7,53 @@ import ModalContentWrapper from '../reusables/ModalContentWrapper';
 import ModalFooter from '../reusables/ModalFooter';
 import ModalTitle from '../reusables/ModalTitle';
 import InputHandler from '../InputHandler';
-import Select from '../reusables/Select'
-import Button from '../reusables/Button'
+import Select from '../reusables/Select';
+import Button from '../reusables/Button';
+import TextInput from '../reusables/TextInput';
+import baseURL from '../../utils/baseURL';
+import axios from 'axios';
 
 const UpdatePlayer = ({ id }) => {
   const [open, setOpen] = useState(false);
 
-  const [playerName, setPlayerName] = useState('');
-  const [goal,setGoal] = useState();
-  const [teamId, setTeamId] = useState();
+  const [name, setName] = useState('');
+  const [goals, setGoals] = useState('');
+  const [teamId, setTeamId] = useState('');
 
   useEffect(() => {
     if (open) {
-      // Call details /players/:id
+      getPlayer();
     }
   }, [open]);
+
+  async function getPlayer() {
+    try {
+      const res = await axios.get(`${baseURL}/players/${id}`);
+
+      const playerData = res?.data[0];
+      setName(playerData.name);
+      setGoals(playerData.goals);
+      setTeamId('');
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  // teams
+  const [teams, setTeams] = useState([]);
+
+  useEffect(() => {
+    if (open) getTeams();
+  }, [open]);
+
+  async function getTeams() {
+    try {
+      const res = await axios.get(`${baseURL}/teams`);
+      setTeams([...res?.data]);
+    } catch (err) {
+      console.log(err);
+    }
+  }
 
   async function handleUpdate(e) {
     //
@@ -39,48 +71,44 @@ const UpdatePlayer = ({ id }) => {
             <h1 className='text-xl text-left'>Update Player</h1>
           </ModalTitle>
           <ModalBody>
-            <form className='flex flex-col justify-start'>
-              {/* Fields: name, goals; Select: state=teamId; Button: Submit */}
-              <div>
-                <label>Player Name</label>
-                <InputHandler
-                  type= 'text'
-                  state={playerName}
-                  setState ={ setPlayerName}
-                  placeholder
-                />
-              </div>
-              <div>
-                <label>Goal</label>
-                <InputHandler
-                  type= 'number'
-                  state={goal}
-                  setState ={ setGoal}
-                  placeholder
-                />
-              </div>
-              <div>
-                <label>Select</label>
-                <Select 
-                  value={teamId}
-                  onChange = {setTeamId}
-                  tuples = {[]}
-                />
-              </div>
-              <div className='w-full flex justify-center'>
-                <Button 
-                  type='submit'
-                  color = 'text-white'
-                  bgColor='bg-primary'
-                  children='Submit'
-                />
-              </div>
+            <form
+              onSubmit={handleUpdate}
+              className='flex flex-col justify-start text-left'
+            >
+              <TextInput
+                value={name}
+                onChange={setName}
+                placeholder='Name'
+                required
+              />
+              <TextInput
+                value={goals}
+                onChange={setGoals}
+                placeholder='Goals'
+                required
+              />
+              <Select
+                required
+                value={teamId}
+                onChange={setTeamId}
+                tuples={teams.map(team => ({
+                  value: team.id,
+                  name: team.name
+                }))}
+              ></Select>
+
+              <button
+                type='submit'
+                className='w-full py-2 px-4 bg-green-500 text-white shadow-md shadow-neutral-400 mt-6'
+              >
+                Submit
+              </button>
             </form>
           </ModalBody>
 
           <ModalFooter>
             <button
-              className='py-1 px-4 text-red-500 bg-gray-300'
+              className='py-2 px-4 text-white bg-red-500 w-full'
               onClick={() => setOpen(false)}
             >
               Close

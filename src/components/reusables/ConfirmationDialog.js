@@ -26,7 +26,7 @@ const ConfirmationDialog = ({ open, setOpen, title, bodyText, onSave }) => {
               className='text-white bg-green-500 p-4 py-2'
               onClick={() => onSave()}
             >
-              Save
+              Delete
             </button>
           </div>
         </ModalFooter>

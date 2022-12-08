@@ -8,6 +8,7 @@ import TableRow from './reusables/TableRow';
 import UpdateTeam from './update/UpdateTeam';
 import baseURL from '../utils/baseURL';
 import CreateTeam from './create/CreateTeam';
+import DeleteTeam from './delete/DeleteTeam';
 
 const Teams = () => {
   const [teams, setTeams] = useState([]);
@@ -46,8 +47,8 @@ const Teams = () => {
                 <TableRow
                   attributes={{
                     team: team.name,
-                    update: <UpdateTeam />,
-                    delete: <>Delete</>
+                    update: <UpdateTeam id={team.id} />,
+                    delete: <DeleteTeam name={team.name} id={team.id} />
                   }}
                 />
               ))}

@@ -8,6 +8,7 @@ import TableRow from './reusables/TableRow';
 import UpdatePlayer from './update/UpdatePlayer';
 import baseURL from '../utils/baseURL';
 import CreatePlayer from './create/CreatePlayer';
+import DeletePlayer from './delete/DeletePlayer';
 
 const Players = () => {
   const [players, setPlayers] = useState([]);
@@ -45,8 +46,8 @@ const Players = () => {
                     name: player.name,
                     goals: player.goals,
                     team: player.team,
-                    update: <UpdatePlayer />,
-                    delete: <>Delete</>
+                    update: <UpdatePlayer id={player.id} />,
+                    delete: <DeletePlayer name={player.name} id={player.id} />
                   }}
                 />
               ))}
