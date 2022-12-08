@@ -33,7 +33,7 @@ const UpdatePlayer = ({ id }) => {
       const playerData = res?.data[0];
       setName(playerData.name);
       setGoals(playerData.goals);
-      setTeamId('');
+      setTeamId(playerData.team_id);
     } catch (err) {
       console.log(err);
     }
