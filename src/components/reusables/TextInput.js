@@ -14,7 +14,7 @@ const TextInput = ({
       </span>
       <input
         required={required}
-        className='max-h-max w-full py-2 px-4 bg-configLightGray disabled:cursor-not-allowed'
+        className='max-h-max w-full py-2 px-4 bg-slate-300 disabled:cursor-not-allowed'
         type={type}
         placeholder={placeholder}
         value={value}

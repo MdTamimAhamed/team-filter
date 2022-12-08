@@ -7,6 +7,7 @@ import TableBody from './reusables/TableBody';
 import TableRow from './reusables/TableRow';
 import UpdatePlayer from './update/UpdatePlayer';
 import baseURL from '../utils/baseURL';
+import CreatePlayer from './create/CreatePlayer';
 
 const Players = () => {
   const [players, setPlayers] = useState([]);
@@ -29,6 +30,7 @@ const Players = () => {
       <NavigationBar />
       <div className='flex justify-center'>
         <div className='w-[850px] mt-10 flex flex-col justify-center'>
+          <CreatePlayer />
           <h1 className='text-center text-[30px]'>Players</h1>
 
           <Table>
