@@ -7,6 +7,7 @@ import TableBody from './reusables/TableBody';
 import TableRow from './reusables/TableRow';
 import UpdateTeam from './update/UpdateTeam';
 import baseURL from '../utils/baseURL';
+import CreateTeam from './create/CreateTeam';
 
 const Teams = () => {
   const [teams, setTeams] = useState([]);
@@ -28,7 +29,8 @@ const Teams = () => {
     <>
       <NavigationBar />
       <div className='flex justify-center'>
-        <div className='w-[850px] flex flex-col'>
+        <div className='w-8/12 flex flex-col mt-6'>
+          <CreateTeam />
           <h1 className='text-center text-2xl mt-6'>Teams Table</h1>
         </div>
       </div>
